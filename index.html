@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Link to Google Sheets</title>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-5 col-md-8 mx-auto shadow border bg-white p-4 rounded">
+        <h2 class="text-center fw-bold mb-3">Survei Teknik Open House 2022</h2>
+        <form name="link-to-sheet">
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Masukin nama lo" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" id="email" name="email" class="form-control" placeholder="Boleh email ui atau pribadi" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="message" class="form-label">Harapan buat TOH 2022</label>
+            <textarea type="text" id="message" name="message" class="form-control" placeholder="Bisa masukin doa doanya" rows="5" required></textarea>
+          </div>
+          <div>
+            <button class="btn btn-primary" type="submit">AAMIIN</button>
+            <button class="btn btn-danger" type="submit">Reset the Form!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwt0qstKbVIwmlAKc9vxdwaOSPm-zjugPdGEFE4y154QVNevMwDZ3pFmy8cuB7NJiOp/exec'
+    const form = document.forms['link-to-sheet']
+
+    form.addEventListener('submit', e=> {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+  
+</body>
+</html>
